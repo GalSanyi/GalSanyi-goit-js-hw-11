@@ -38,7 +38,6 @@ function onSearchForm(evt) {
     const form = evt.currentTarget.value;
     const value = form.trim();
     console.log(value);
-    
-
+    console.log(object);
 
 }
