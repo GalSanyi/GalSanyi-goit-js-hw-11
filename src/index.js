@@ -1,28 +1,57 @@
 import Notiflix from 'notiflix';
 import axios from 'axios';
 import fotoOneCard from '../tamplates/fotoOneCard.hbs';
+import NewsApiService from '../src/news-service';
 import './sass/main.scss';
 
-//
-let searchQuery = '';
+
+//екземпляр NewsApiService
+const newsApiSwrvice = new NewsApiService();
+
 const refs = {
     searchForm: document.querySelector('.search-form'),
     gallery: document.querySelector('.gallery'),
     loadMore: document.querySelector('.load-more'),
 }
+
+
+
+// let searchQuery = '';
+
 refs.searchForm.addEventListener('submit', onSearchForm);
 refs.loadMore.addEventListener('click', onLoadMore);
 
 function onSearchForm(evt) {
-    evt.preventDefault();
-    searchQuery = evt.currentTarget.elements.searchQuery.value;
-    fetch(`https://pixabay.com/api/?key=25003367-734d14b32e98f9c9fd7c27c2f&q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=1`).then(res => res.json()).then(console.log);
 
+    evt.preventDefault();
+    clearHits();
+    //находит запрос
+    newsApiSwrvice.query = evt.currentTarget.elements.searchQuery.value;
+    if (newsApiSwrvice.query === '') {
+        return Notiflix.Notify.info('Sorry, there are no images matching your search query. Please try again.');
+
+    }
+
+
+    //вызов метода сброса страницы
+    newsApiSwrvice.resetPage();
+    //идет запрос на fetch
+    newsApiSwrvice.fetchArticles().then(appendHitsMarkup);
 }
 
 
 function onLoadMore() {
-    fetch(`https://pixabay.com/api/?key=25003367-734d14b32e98f9c9fd7c27c2f&q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=1`).then(res => res.json()).then(console.log);
+    //предается fetch
+    newsApiSwrvice.fetchArticles().then(appendHitsMarkup);
 
+}
+
+function appendHitsMarkup(hits) {
+    refs.gallery.insertAdjacentHTML('beforeend', fotoOneCard(hits))
+
+}
+//чистка контейнера
+function clearHits() {
+    refs.gallery.innerHTML = '';
 
 }
