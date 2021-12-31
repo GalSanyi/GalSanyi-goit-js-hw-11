@@ -1,7 +1,7 @@
 import Notiflix from 'notiflix';
 import axios from 'axios';
 import fotoOneCard from '../tamplates/fotoOneCard.hbs';
-import NewsApiService from '../src/news-service';
+import NewsApiService from './components/news-service';
 import './sass/main.scss';
 
 
