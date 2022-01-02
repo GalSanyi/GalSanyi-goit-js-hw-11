@@ -22,12 +22,15 @@ input[type="text"] {
 button[type="button"] {
     display: block;
     margin: 0 auto;
+    background-color: rgb(103, 58, 209);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
 }
 
-button.is-hidden {
-    display: none
+.button.is-hidden {
+    display: none;
 }
 
-button>.spinner.is-hidden {
+.button>.spinner.is-hidden {
     display: none;
 }

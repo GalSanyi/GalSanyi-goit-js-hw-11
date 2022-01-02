@@ -1,16 +1,17 @@
 export default class LoadMoreBtn {
     constructor({ selector, hidden = false }) {
+
         this.refs = this.getRefs(selector);
 
-        hidden && this.refs();
+        this.hidden && this.hide();
 
     }
 
     getRefs(selector) {
         const refs = {};
         refs.button = document.querySelector(selector);
-        refs.lable = refs.button.querySelector('lable');
-        refs.spinner = refs.button.querySelector('spinner');
+        refs.lable = refs.button.querySelector('.lable');
+        refs.spinner = refs.button.querySelector('.spinner');
 
 
         return refs;
@@ -23,5 +24,17 @@ export default class LoadMoreBtn {
 
     }
 
-    
+    disable() {
+        this.refs.button.disable = true;
+        this.refs.lable.textContent = 'Download...';
+        this.refs.spinner.classlist.remove('is-hidden');
+    }
+    show() {
+        this.getRefs.button.classlist.remove('is-hidden');
+
+    }
+    hide() {
+        this.refs.button.classlist.add('is-hidden');
+    }
+
 }

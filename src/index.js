@@ -2,24 +2,31 @@ import Notiflix from 'notiflix';
 import axios from 'axios';
 import fotoOneCard from '../tamplates/fotoOneCard.hbs';
 import NewsApiService from './components/news-service';
+import LoadMoreBtn from './components/load-more-btn';
+
 import './sass/main.scss';
 
 
-//екземпляр NewsApiService
-const newsApiSwrvice = new NewsApiService();
 
 const refs = {
     searchForm: document.querySelector('.search-form'),
     gallery: document.querySelector('.gallery'),
-    loadMore: document.querySelector('.load-more'),
+    // loadMore: document.querySelector('.load-more'),
 }
 
-
-
+//екземпляр NewsApiService
+const newsApiSwrvice = new NewsApiService();
+const loadMoreBtn = new LoadMoreBtn({
+    selector: '[data-action="load-more"]',
+    hidden: true,
+});
+console.log(loadMoreBtn);
+// loadMoreBtn.show();
+// loadMoreBtn.disable();
 // let searchQuery = '';
 
 refs.searchForm.addEventListener('submit', onSearchForm);
-refs.loadMore.addEventListener('click', onLoadMore);
+loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
 
 function onSearchForm(evt) {
 
