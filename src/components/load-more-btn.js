@@ -3,7 +3,8 @@ export default class LoadMoreBtn {
 
         this.refs = this.getRefs(selector);
 
-        this.hidden && this.hide();
+        hidden && this.hide();
+
 
     }
 
@@ -33,8 +34,11 @@ export default class LoadMoreBtn {
         this.getRefs.button.classlist.remove('is-hidden');
 
     }
+
+
     hide() {
         this.refs.button.classlist.add('is-hidden');
+
     }
 
 }

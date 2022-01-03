@@ -58,3 +58,22 @@ button[type="button"] {
 .button>.spinner.is-hidden {
     display: none;
 }
+
+.info {
+    display: flex;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.info .info-item__link {
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.info-item.info-item__link:last-child {
+    color: rgb(228, 27, 27);
+}
+
+.info-item__link p {
+    text-align: center;
+}

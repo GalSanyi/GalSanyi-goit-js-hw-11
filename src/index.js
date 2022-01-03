@@ -2,7 +2,7 @@ import Notiflix from 'notiflix';
 import axios from 'axios';
 import fotoOneCard from '../tamplates/fotoOneCard.hbs';
 import NewsApiService from './components/news-service';
-import LoadMoreBtn from './components/load-more-btn';
+import LoadMoreBtn from '../src/components/load-more-btn';
 
 import './sass/main.scss';
 
@@ -29,7 +29,7 @@ loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
 function onSearchForm(evt) {
 
     evt.preventDefault();
-    clearHits();
+
     //находит запрос
     newsApiService.query = evt.currentTarget.elements.searchQuery.value;
     if (newsApiService.query === '') {
@@ -38,24 +38,36 @@ function onSearchForm(evt) {
     }
 
 
-    // //покузываем
-    // loadMoreBtn.show();
-    // //выключаем сразу
-    // loadMoreBtn.disable();
 
 
 
-
+    //покузываем
+    loadMoreBtn.show();
     //вызов метода сброса страницы
     newsApiService.resetPage();
-    //идет запрос на fetch
-    newsApiService.fetchArticles().then(appendHitsMarkup);
+    clearHits();
+
+    fetchArticles();
+
+
 }
 
 
 function onLoadMore() {
-    //предается fetch
-    newsApiService.fetchArticles().then(appendHitsMarkup);
+    fetchArticles();
+
+}
+
+//управление load more  button
+function fetchArticles() {
+    //выключаем сразу
+    loadMoreBtn.disable();
+    //идет запрос на fetch
+    newsApiService.fetchArticles().then(hits => {
+        appendHitsMarkup(hits);
+        loadMoreBtn.enable();
+    });
+
 
 }
 
