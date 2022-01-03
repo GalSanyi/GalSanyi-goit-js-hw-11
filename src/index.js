@@ -15,14 +15,12 @@ const refs = {
 }
 
 //екземпляр NewsApiService
-const newsApiSwrvice = new NewsApiService();
+const newsApiService = new NewsApiService();
 const loadMoreBtn = new LoadMoreBtn({
     selector: '[data-action="load-more"]',
     hidden: true,
 });
 console.log(loadMoreBtn);
-// loadMoreBtn.show();
-// loadMoreBtn.disable();
 // let searchQuery = '';
 
 refs.searchForm.addEventListener('submit', onSearchForm);
@@ -33,27 +31,36 @@ function onSearchForm(evt) {
     evt.preventDefault();
     clearHits();
     //находит запрос
-    newsApiSwrvice.query = evt.currentTarget.elements.searchQuery.value;
-    if (newsApiSwrvice.query === '') {
+    newsApiService.query = evt.currentTarget.elements.searchQuery.value;
+    if (newsApiService.query === '') {
         return Notiflix.Notify.info('Sorry, there are no images matching your search query. Please try again.');
 
     }
 
 
+    // //покузываем
+    // loadMoreBtn.show();
+    // //выключаем сразу
+    // loadMoreBtn.disable();
+
+
+
+
     //вызов метода сброса страницы
-    newsApiSwrvice.resetPage();
+    newsApiService.resetPage();
     //идет запрос на fetch
-    newsApiSwrvice.fetchArticles().then(appendHitsMarkup);
+    newsApiService.fetchArticles().then(appendHitsMarkup);
 }
 
 
 function onLoadMore() {
     //предается fetch
-    newsApiSwrvice.fetchArticles().then(appendHitsMarkup);
+    newsApiService.fetchArticles().then(appendHitsMarkup);
 
 }
 
 function appendHitsMarkup(hits) {
+    // loadMoreBtn.disable();
     refs.gallery.insertAdjacentHTML('beforeend', fotoOneCard(hits))
 
 }

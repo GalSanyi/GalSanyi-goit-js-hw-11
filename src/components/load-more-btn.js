@@ -25,7 +25,7 @@ export default class LoadMoreBtn {
     }
 
     disable() {
-        this.refs.button.disable = true;
+        this.refs.button.disabled = true;
         this.refs.lable.textContent = 'Download...';
         this.refs.spinner.classlist.remove('is-hidden');
     }
