@@ -2,7 +2,7 @@ import Notiflix from 'notiflix';
 import axios from 'axios';
 import fotoOneCard from '../tamplates/fotoOneCard.hbs';
 import NewsApiService from './components/news-service';
-import LoadMoreBtn from '../src/components/load-more-btn';
+import LoadMoreBtn from './components/load-more-btn';
 
 import './sass/main.scss';
 
