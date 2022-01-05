@@ -32,6 +32,8 @@ function onSearchForm(evt) {
 
     //находит запрос
     newsApiService.query = evt.currentTarget.elements.searchQuery.value;
+
+
     if (newsApiService.query === '') {
         return Notiflix.Notify.info('Sorry, there are no images matching your search query. Please try again.');
 
@@ -43,6 +45,7 @@ function onSearchForm(evt) {
 
     //покузываем
     loadMoreBtn.show();
+
     //вызов метода сброса страницы
     newsApiService.resetPage();
     clearHits();
