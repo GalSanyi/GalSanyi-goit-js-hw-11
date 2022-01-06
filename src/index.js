@@ -1,5 +1,5 @@
 import Notiflix from 'notiflix';
-import axios from 'axios';
+
 import fotoOneCard from '../tamplates/fotoOneCard.hbs';
 import NewsApiService from './components/news-service';
 import LoadMoreBtn from './components/load-more-btn';
@@ -74,7 +74,10 @@ function fetchArticles() {
 function appendHitsMarkup(hits) {
     // loadMoreBtn.disable();
     refs.gallery.insertAdjacentHTML('beforeend', fotoOneCard(hits))
-
+    if (hits.length === 0) {
+        Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
+        loadMoreBtn.hide()
+    }
 }
 //чистка контейнера
 function clearHits() {
