@@ -1,5 +1,5 @@
 import Notiflix from 'notiflix';
-
+impo
 import fotoOneCard from '../tamplates/fotoOneCard.hbs';
 import NewsApiService from './components/news-service';
 import LoadMoreBtn from './components/load-more-btn';
