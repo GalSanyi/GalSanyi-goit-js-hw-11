@@ -1,6 +1,6 @@
 import axios from 'axios';
-const API_KEY = '25003367-734d14b32e98f9c9fd7c27c2f';
-const BASE_URL = 'https://pixabay.com/api';
+// const API_KEY = '25003367-734d14b32e98f9c9fd7c27c2f';
+// const BASE_URL = 'https://pixabay.com/api';
 export default class NewsApiService {
     constructor() {
             //глобальная переманная для поиска
