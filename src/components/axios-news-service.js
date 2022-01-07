@@ -6,12 +6,14 @@ export default class NewsApiService {
         //глобальная переманная для поиска
         this.searchQuery = '';
         this.page = 1;
+
     }
 
 
 
     async fetchArticles() {
-        this.incrementPage();
+        console.log(this);
+        // this.incrementPage();
         return axios({
             method: 'get',
             url: `${BASE_URL}`,
@@ -24,19 +26,20 @@ export default class NewsApiService {
                 safesearch: 'true',
                 per_page: 40,
             },
+
         });
     }
 
 
-    // async fetchArticles() {
+    // fetchArticles() {
     //     console.log(this);
-    //     return axios.get(`${BASE_URL}/?key=${API_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`)
-    //         // .then(response => response.json())
-    //         .then(({ data }) => {
-    //             console.log(data);
+    //     return fetch(`${BASE_URL}/?key=${API_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`)
+    //         .then(response => response.json())
+    //         .then(({ hits }) => {
+    //             console.log(hits);
     //             //если результат успешный страницу увеличиваем на 1
     //             this.incrementPage();
-    //             return data;
+    //             return hits;
     //         });
     // }
 
