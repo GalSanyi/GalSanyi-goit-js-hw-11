@@ -13,7 +13,7 @@ export default class NewsApiService {
 
     async fetchArticles() {
         console.log(this);
-        // this.incrementPage();
+        this.incrementPage();
         return axios({
             method: 'get',
             url: `${BASE_URL}`,
