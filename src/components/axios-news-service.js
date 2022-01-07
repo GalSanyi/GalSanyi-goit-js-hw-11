@@ -3,40 +3,45 @@ const API_KEY = '25003367-734d14b32e98f9c9fd7c27c2f';
 const BASE_URL = 'https://pixabay.com/api/';
 export default class NewsApiService {
     constructor() {
-            //глобальная переманная для поиска
-            this.searchQuery = '';
-            this.page = 1;
-        }
-        // fetchArticles() {
-        //     console.log(this);
-        //     return fetch(`${BASE_URL}/?key=${API_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`)
-        //         .then(response => response.json())
-        //         .then(({ hits }) => {
-        //             console.log(hits);
-        //             //если результат успешный страницу увеличиваем на 1
-        //             this.incrementPage();
-        //             return hits;
-        //         });
-        // }
+        //глобальная переманная для поиска
+        this.searchQuery = '';
+        this.page = 1;
+    }
+
 
 
     async fetchArticles() {
-            this.incrementPage();
-            return axios({
-                method: 'get',
-                url: `${BASE_URL}`,
-                params: {
-                    key: `${API_KEY}`,
-                    q: `${this.searchQuery}`,
-                    page: `${this.page}`,
-                    image_type: 'photo',
-                    orientation: 'horizontal',
-                    safesearch: 'true',
-                    per_page: 40,
-                },
-            });
-        }
-        //метод увеличения страницы
+        this.incrementPage();
+        return axios({
+            method: 'get',
+            url: `${BASE_URL}`,
+            params: {
+                key: `${API_KEY}`,
+                q: `${this.searchQuery}`,
+                page: `${this.page}`,
+                image_type: 'photo',
+                orientation: 'horizontal',
+                safesearch: 'true',
+                per_page: 40,
+            },
+        });
+    }
+
+
+    // async fetchArticles() {
+    //     console.log(this);
+    //     return axios.get(`${BASE_URL}/?key=${API_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`)
+    //         // .then(response => response.json())
+    //         .then(({ data }) => {
+    //             console.log(data);
+    //             //если результат успешный страницу увеличиваем на 1
+    //             this.incrementPage();
+    //             return data;
+    //         });
+    // }
+
+
+    //метод увеличения страницы
     incrementPage() {
             this.page += 1
         }

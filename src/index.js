@@ -19,7 +19,7 @@ const loadMoreBtn = new LoadMoreBtn({
     selector: '[data-action="load-more"]',
     hidden: true,
 });
-console.log(loadMoreBtn);
+
 // let searchQuery = '';
 
 refs.searchForm.addEventListener('submit', onSearchForm);
@@ -63,7 +63,7 @@ function fetchArticles() {
     // loadMoreBtn.disable();
     //идет запрос на fetch
     newsApiService.fetchArticles().then(hits => {
-        appendHitsMarkup(hits);
+        appendHitsMarkup(hits.data.hits);
         loadMoreBtn.enable();
     });
 
